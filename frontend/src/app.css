@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-dark-bg: #1b1f24;
+  --color-dark-surface: #252a30;
+  --color-dark-elevated: #2f353c;
+
+  --color-light-bg: #f4f6f8;
+  --color-light-surface: #ffffff;
+  --color-light-elevated: #e9edf1;
+
+  --color-primary: #00adb5;
+
+  --rgb-dark-surface: 37, 42, 48;
+  --rgb-light-surface: 255, 255, 255;
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply transition-colors duration-200 font-sans;
+  }
+
+  [data-theme="dark"] body {
+    @apply bg-[var(--color-dark-bg)] text-[var(--color-light-bg)];
+  }
+
+  [data-theme="light"] body {
+    @apply bg-[var(--color-light-bg)] text-[var(--color-dark-bg)];
+  }
+}
+
+[aria-label="GitHub"] path {
+  fill: var(--color-dark-bg);
+}
+
+[data-theme="dark"] [aria-label="GitHub"] path {
+  fill: var(--color-primary) !important;
+}

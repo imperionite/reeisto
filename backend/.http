@@ -1,0 +1,208 @@
+@ADMIN_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYWRtaW4iLCJleHAiOjE3NzQ4MDczNTUsImlhdCI6MTc3NDgwMzc1NX0.KCDyWJvbVcd4EI4SQXIrN_gb_ZxPDMhqIeTY5AIPW2M
+@TRADER_TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoyLCJyb2xlIjoidHJhZGVyIiwiZXhwIjoxNzc0ODA3MzgyLCJpYXQiOjE3NzQ4MDM3ODJ9.r7WS7A0V2xHuXo-mwMWxlnRS2BCpJ7HdRWOPwebIhxw
+<<<<<<< HEAD
+### 1. Health Check
+GET http://localhost:8080/health
+###
+
+### 2. REGISTER (New User)
+POST http://localhost:8080/api/v1/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "email": "test@reetis.com",
+  "password": "testpass123"
+}
+###
+
+### 3. LOGIN (Use seeded or registered user Admin)
+POST http://localhost:8080/api/v1/login
+=======
+### 1️⃣ Login as admin
+POST http://localhost:8080/login
+>>>>>>> 3434ee2af12cefcd0083cdb7544b4f68644e7173
+Content-Type: application/json
+
+{
+  "username": "admin",
+<<<<<<< HEAD
+  "password": "supersecure"
+}
+# OR
+{
+  "username": "trader1", 
+  "password": "traderpass"
+}
+###
+
+### 3. LOGIN (Use seeded or registered user Trader)
+POST http://localhost:8080/api/v1/login
+Content-Type: application/json
+
+{
+  "username": "trader1", 
+  "password": "traderpass"
+}
+###
+
+### 4. GET ALL REEs (Public - Cached)
+GET http://localhost:8080/api/v1/rees
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+###
+
+### 5. CREATE REE (Admin Only)
+POST http://localhost:8080/api/v1/rees
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "name": "NewElement",
+  "symbol": "NE",
+  "category": "Light REE",
+  "market_price": 250.50
+}
+###
+
+### 6. UPDATE REE (Admin Only)
+PUT http://localhost:8080/api/v1/rees/1
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+Content-Type: application/json
+
+{
+  "market_price": 150.75
+}
+###
+
+### 7. DELETE REE (Admin Only) 
+DELETE http://localhost:8080/api/v1/rees/1
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+###
+
+### 8. GET INVENTORIES
+GET http://localhost:8080/api/v1/inventories?limit=5
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+###
+
+### 9. CREATE INVENTORY (Admin Only)
+POST http://localhost:8080/api/v1/inventories
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+=======
+  "password": "admin123"
+}
+
+### 2️⃣ Login as trader
+POST http://localhost:8080/login
+Content-Type: application/json
+
+{
+  "username": "trader",
+  "password": "trader123"
+}
+
+### 3️⃣ Get all REEs (admin or trader)
+GET http://localhost:8080/rees
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### 4️⃣ Create new REE (admin only)
+POST http://localhost:8080/rees
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "name": "Samarium1",
+  "symbol": "Sm1",
+  "category": "Light REE",
+  "market_price": 80
+}
+
+### 5️⃣ Update REE (admin only)
+PUT http://localhost:8080/rees/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+Content-Type: application/json
+
+{
+  "market_price": 100
+}
+
+### 6️⃣ Delete REE (admin only)
+DELETE http://localhost:8080/rees/1
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### 7️⃣ Get Inventories
+GET http://localhost:8080/inventories
+Authorization: Bearer {{TRADER_TOKEN}}
+
+### 8️⃣ Create Inventory (admin only)
+POST http://localhost:8080/inventories
+Authorization: Bearer {{ADMIN_TOKEN}}
+>>>>>>> 3434ee2af12cefcd0083cdb7544b4f68644e7173
+Content-Type: application/json
+
+{
+  "element_id": 1,
+<<<<<<< HEAD
+  "quantity": 250.75,
+  "warehouse_location": "WH-X-99"
+}
+###
+
+### 10. GET MY TRANSACTIONS (User-specific)
+GET http://localhost:8080/api/v1/transactions?limit=10
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+###
+
+### 11. CREATE TRANSACTION (Buy/Sell)
+POST http://localhost:8080/api/v1/transactions
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+=======
+  "quantity": 100,
+  "warehouse_location": "NYC"
+}
+
+### 9️⃣ Get Transactions (admin sees all, trader sees own)
+GET http://localhost:8080/transactions
+Authorization: Bearer {{TRADER_TOKEN}}
+
+### 10️⃣ Create Transaction
+POST http://localhost:8080/transactions
+Authorization: Bearer {{TRADER_TOKEN}}
+>>>>>>> 3434ee2af12cefcd0083cdb7544b4f68644e7173
+Content-Type: application/json
+
+{
+  "element_id": 1,
+  "type": "buy",
+<<<<<<< HEAD
+  "quantity": 5.5,
+  "price": 125.50
+}
+###
+
+### 12. Rate Limit Test (Will fail after 100 req/min)
+GET http://localhost:8080/api/v1/rees
+###
+
+### 13. Invalid Token (Should return 401)
+GET http://localhost:8080/api/v1/rees
+Authorization: Bearer invalid-token
+###
+
+### 14. Admin-Only Access (Trader token)
+GET http://localhost:8080/api/v1/rees
+Authorization: Bearer TRADER_TOKEN_HERE
+###
+
+### 15. Pagination Test
+GET http://localhost:8080/api/v1/transactions?limit=2&offset=0
+Authorization: Bearer YOUR_JWT_TOKEN_HERE
+###
+=======
+  "quantity": 10,
+  "price": 120
+}
+
+### 11️⃣ Filter Transactions by type
+GET http://localhost:8080/transactions?type=buy
+Authorization: Bearer {{TRADER_TOKEN}}
+>>>>>>> 3434ee2af12cefcd0083cdb7544b4f68644e7173
