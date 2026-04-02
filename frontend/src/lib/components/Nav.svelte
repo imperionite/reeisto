@@ -7,7 +7,7 @@
 <nav class="border-b border-dark-surface/10 dark:border-light-bg/10 py-4 px-6 flex justify-between items-center bg-white dark:bg-dark-surface">
     <div class="flex items-center gap-8">
         <a href="/" class="text-xl font-bold tracking-tighter text-primary">
-            REETIS<span class="text-dark-bg dark:text-light-bg">.IO</span>
+            REE<span class="text-dark-bg dark:text-light-bg">ISTO</span>
         </a>
         
         {#if $auth.isAuthenticated}

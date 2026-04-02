@@ -4,36 +4,45 @@
   --color-dark-bg: #1b1f24;
   --color-dark-surface: #252a30;
   --color-dark-elevated: #2f353c;
-
   --color-light-bg: #f4f6f8;
   --color-light-surface: #ffffff;
   --color-light-elevated: #e9edf1;
-
   --color-primary: #00adb5;
-
   --rgb-dark-surface: 37, 42, 48;
   --rgb-light-surface: 255, 255, 255;
 }
 
-/* Base Styles */
+/* Base Styles - ADD THESE */
 @layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box; 
+  }
+
+  html {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
   body {
-    @apply transition-colors duration-200 font-sans;
+    @apply transition-colors duration-200 font-sans text-base; 
+    
   }
 
   [data-theme="dark"] body {
-    @apply bg-[var(--color-dark-bg)] text-[var(--color-light-bg)];
+    @apply bg-dark-bg text-light-bg;
   }
 
   [data-theme="light"] body {
-    @apply bg-[var(--color-light-bg)] text-[var(--color-dark-bg)];
+    @apply bg-light-bg text-dark-bg;
   }
 }
 
+/* GitHub icon */
 [aria-label="GitHub"] path {
   fill: var(--color-dark-bg);
 }
-
 [data-theme="dark"] [aria-label="GitHub"] path {
   fill: var(--color-primary) !important;
 }

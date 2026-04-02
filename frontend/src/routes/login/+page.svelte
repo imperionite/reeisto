@@ -3,6 +3,7 @@
   import { apiFetch } from "$lib/api";
   import { goto } from "$app/navigation";
   import { onMount, onDestroy } from "svelte";
+  import { siteConfig } from "$lib/config";
 
   let username = $state("");
   let password = $state("");
@@ -23,8 +24,17 @@
       loading = false;
     }
   }
-
 </script>
+
+<svelte:head>
+  <title>Login — REEISTO</title>
+  <meta
+    name="description"
+    content="Login page for REEISTO. This academic system does not process real user data or financial information."
+  />
+  <link rel="canonical" href={`${siteConfig.siteUrl}/login`} />
+  <meta name="robots" content="noindex, nofollow" />
+</svelte:head>
 
 <!-- Key changes: h-screen + flex + no min-height -->
 <div class="flex items-center justify-center mt-24 md:mt-32 p-4">

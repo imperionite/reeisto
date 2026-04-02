@@ -1,6 +1,7 @@
 import { browser } from '$app/environment';
+import { siteConfig } from "$lib/config";
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
+const API_BASE = siteConfig.apiBaseUrl;
 
 export async function apiFetch(endpoint, method = 'GET', body = null) {
     const token = browser ? localStorage.getItem('reetis_token') : null;

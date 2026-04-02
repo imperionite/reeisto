@@ -1,27 +1,59 @@
 <script>
+  import { onMount } from "svelte";
   import { theme } from "$lib/stores/theme.svelte";
+
+  let now = new Date();
+  //let now = new Date().toISOString();
+
+  onMount(() => {
+    const interval = setInterval(() => {
+      now = new Date();
+    }, 1000);
+
+    return () => clearInterval(interval);
+  });
+
+  const pad = (n) => String(n).padStart(2, "0");
 </script>
 
 <footer
-  class="mt-20 py-10 border-t border-dark-surface/10 dark:border-light-bg/10"
+  class="mt-20 py-6 border-t border-dark-surface/10 dark:border-light-bg/10"
 >
   <div
-    class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6"
+    class="container mx-auto px-6 flex flex-col md:flex-row md:items-center md:justify-between gap-8"
   >
-    <div class="text-xs opacity-50 font-mono flex flex-col items-start gap-1">
-      <span
-        >REETIS Industrial Materials Division // {new Date().getFullYear()}.{String(
-          new Date().getMonth() + 1,
-        ).padStart(2, "0")}</span
-      >
-      <span
-        class="opacity-40 text-[10px] font-light tracking-wider leading-tight"
-      >
-        Academic POC & Simulation Project. No real-world trading or funds use.
+    <!-- LEFT: Identity / System Info -->
+    <div
+      class="flex flex-col gap-1 text-xs font-mono opacity-60 text-center md:text-left"
+    >
+      <span>
+        REETIS Industrial Materials Division //
+
+        {pad(now.getDate())}.{pad(now.getMonth() + 1)}.{pad(now.getFullYear())}
+
+        |
+        {pad(now.getHours())}:{pad(now.getMinutes())}
+        
       </span>
     </div>
 
-    <div class="flex items-center gap-4">
+    <!-- CENTER: Legal Links -->
+    <div
+      class="flex items-center justify-center gap-3 text-[11px] md:text-xs opacity-50"
+    >
+      <a href="/privacy" class="hover:opacity-100 transition-opacity">
+        Privacy Policy
+      </a>
+
+      <span class="opacity-30">•</span>
+
+      <a href="/terms" class="hover:opacity-100 transition-opacity">
+        Terms & Conditions
+      </a>
+    </div>
+
+    <!-- RIGHT: Controls -->
+    <div class="flex items-center justify-center md:justify-end gap-3">
       <!-- Theme Toggle -->
       <button
         onclick={() => theme.toggle()}
@@ -31,11 +63,14 @@
         <span class="text-sm font-medium">
           {theme.current === "light" ? "Daylight" : "Night Ops"}
         </span>
+
         <div
           class="w-10 h-5 bg-dark-bg dark:bg-primary rounded-full relative transition-colors"
         >
           <div
-            class={`absolute top-1 w-3 h-3 rounded-full bg-white transition-all ${theme.current === "dark" ? "left-6" : "left-1"}`}
+            class={`absolute top-1 w-3 h-3 rounded-full bg-white transition-all ${
+              theme.current === "dark" ? "left-6" : "left-1"
+            }`}
           ></div>
         </div>
       </button>
@@ -64,12 +99,7 @@
 </footer>
 
 <style>
-  /* Direct CSS custom property access */
   svg path {
     fill: var(--color-dark-bg);
-  }
-
-  [data-theme="dark"] svg path {
-    fill: var(--color-primary) !important;
   }
 </style>

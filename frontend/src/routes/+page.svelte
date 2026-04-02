@@ -1,14 +1,18 @@
+<script>
+  import REEBackground from "$lib/components/REEBackground.svelte";
+</script>
+
 <svelte:head>
-  <title>About — REEISTO</title>
+  <title>REEISTO</title>
   <meta
     name="description"
     content="REEISTO is an academic proof-of-concept inventory system simulating rare earth material logistics and trading operations."
   />
 </svelte:head>
 
-<div class="min-h-screen py-16 px-4">
-  <div class="max-w-4xl mx-auto space-y-14">
-
+<div class="relative min-h-screen py-16 px-4 overflow-hidden">
+  <REEBackground opacity={0.05} />
+  <div class="relative z-10 max-w-4xl mx-auto space-y-14">
     <!-- HEADER -->
     <section class="text-center border-b border-current/10 pb-10">
       <h1 class="text-4xl md:text-5xl font-mono font-semibold tracking-tight">
@@ -24,11 +28,16 @@
     <section class="space-y-6">
       <div class="panel p-8">
         <p class="leading-relaxed text-base opacity-90">
-          <strong class="text-primary">REEISTO</strong> is an internal operational platform designed to simulate inventory tracking and transaction workflows within a rare earth materials trading environment.
+          <strong class="text-primary">REEISTO</strong> is an internal operational
+          platform designed to simulate inventory tracking and transaction workflows
+          within a rare earth materials trading environment.
         </p>
 
         <p class="leading-relaxed mt-4 text-base opacity-80">
-          Traders interact with inventory distributed across multiple warehouse locations. Buy and sell actions are recorded as material movements—allocation, acquisition, or release—without financial execution.
+          Traders interact with inventory distributed across multiple warehouse
+          locations. Buy and sell actions are recorded as material
+          movements—allocation, acquisition, or release—without financial
+          execution.
         </p>
       </div>
     </section>
@@ -58,7 +67,9 @@
       </div>
 
       <p class="text-sm opacity-70 max-w-2xl">
-        The system reflects industrial workflows where pricing and settlement occur outside operational platforms. REEISTO focuses strictly on logistics and inventory state.
+        The system reflects industrial workflows where pricing and settlement
+        occur outside operational platforms. REEISTO focuses strictly on
+        logistics and inventory state.
       </p>
     </section>
 
@@ -74,7 +85,8 @@
         </ul>
 
         <p class="text-sm opacity-70">
-          These patterns are typical in rare earth and specialty materials supply chains, particularly in B2B and B2G environments.
+          These patterns are typical in rare earth and specialty materials
+          supply chains, particularly in B2B and B2G environments.
         </p>
       </div>
     </section>
@@ -104,10 +116,10 @@
       </div>
 
       <p class="text-center text-sm opacity-60 border-t border-current/10 pt-6">
-        This system is an academic proof-of-concept and should not be used for real trading or financial operations.
+        This system is an academic proof-of-concept and should not be used for
+        real trading or financial operations.
       </p>
     </section>
-
   </div>
 </div>
 
@@ -115,11 +127,6 @@
   .panel {
     background: rgba(var(--rgb-dark-surface), 0.25);
     border: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  [data-theme="light"] .panel {
-    background: rgba(var(--rgb-light-surface), 0.7);
-    border: 1px solid rgba(0, 0, 0, 0.06);
   }
 
   .section-title {
@@ -137,12 +144,7 @@
 
   .card {
     padding: 1rem;
-    border: 1px solid rgba(255,255,255,0.04);
-    background: rgba(255,255,255,0.02);
-  }
-
-  [data-theme="light"] .card {
-    border: 1px solid rgba(0,0,0,0.05);
-    background: rgba(0,0,0,0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.02);
   }
 </style>
